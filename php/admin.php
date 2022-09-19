@@ -17,6 +17,7 @@
 </head>
 
 <body class="card bg-light mb-3">
+    <h1>By Ali Jamal Al Barghouth</h1>
     <header>
         <div class="container">
             <div class="header_content">
@@ -93,13 +94,13 @@
     <br>
     <h2 class="text-uppercase font-weight-bold p-3 mb-2 bg-warning text-dark"> User information</h2>
     <table class="table table-striped table-hover table-bordered">
-    <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">email</th>
-      <th scope="col" colspan="3">username</th>
-    </tr>
-  </thead>
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">email</th>
+                <th scope="col" colspan="3">username</th>
+            </tr>
+        </thead>
         <?php
         include 'DBconnection.php';
         $i = 0;
@@ -107,7 +108,7 @@
         $sql = 'SELECT * FROM customer';
         $res = $conn->prepare($sql);
         $res->execute();
-        $res->bind_result($id, $username, $email, $password,$image);
+        $res->bind_result($id, $username, $email, $password, $image);
         $res->store_result();
 
         if ($res->error) {
@@ -116,9 +117,9 @@
             return 0;
         } else {
             if ($res->num_rows > 0) {
-        
-                while ($res -> fetch()) {
-                    echo "<tr id='tr-".$id."'>";
+
+                while ($res->fetch()) {
+                    echo "<tr id='tr-" . $id . "'>";
                     echo "<th scope='row'>$id</th>";
                     echo "<td>$email</td>";
                     echo "<td>$username</td>";
@@ -172,14 +173,14 @@
     <script src="../js/bootstrap.bundle.min.js.map"></script>
     <script>
         function deleteUser(id) {
-            $.ajax({ 
+            $.ajax({
                 type: "POST",
                 url: "deleteUser.php",
                 data: {
                     id: id
                 },
             });
-            document.getElementById('tr-'+id).remove();
+            document.getElementById('tr-' + id).remove();
         }
     </script>
 </body>
